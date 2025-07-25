@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.145.0">
+<title>El Gran Combo | Jugar</title>
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="../../img/grancombo-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="../../img/grancombo-114x114.png">
+
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<!-- Estilos el Gran Combo -->
+<link href="../../css/estiloscombo.css" rel="stylesheet">
+<link href="../../css/signos.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap"
+	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<style>
+	#campoTexto {
+	padding-right: 30px;
+	box-shadow: 0 0 8px rgba(0, 0, 255, 0.4); /* sombra azul sutil */
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	}
+
+	#cerrarInput {
+	position: realtive;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-10%);
+	cursor: pointer;
+	color: #007BFF; /* azul moderno */
+	font-weight: bold;
+	font-size: 18px;
+	pointer-events: auto;
+	}
+	.icon.clear {
+		color: #007BFF;             /* azul elegante */
+		font-size: 15px;
+		cursor: pointer;
+		user-select: none;
+		display: inline-block;
+		padding: 1px;
+		transition: color 0.3s ease, transform 0.2s ease;
+	}
+
+	.icon.clear:hover {
+		color: #0056b3;
+		transform: scale(1.2);      /* efecto zoom al pasar el mouse */
+	}
+
+	.icon.search {
+		font-size: 4px;
+		color: #007BFF;
+		cursor: pointer;
+		padding: 1px;
+		user-select: none;
+		transition: transform 0.2s ease;
+	}
+
+	.icon.search:hover {
+		color: #0056b3;
+		transform: scale(1.2);
+	}
+
+
+
+		/* Contenedor general */
+	.contenedor-busqueda {
+	position: relative;
+	width: 280px;
+	margin: 10px;
+	}
+
+	/* Input con padding extra */
+	.contenedor-busqueda input {
+	width: 100%;
+	padding: 8px 36px 8px 36px; /* espacio para iconos izquierda/derecha */
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-shadow: 0 0 6px rgba(0, 0, 255, 0.2);
+	}
+
+	/* Iconos */
+	.icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 10px;
+	color: #007BFF;
+	cursor: pointer;
+	user-select: none;
+	}
+
+	.icon.search {
+	left: 8px;
+	}
+
+	.icon.clear {
+	right: 8px;
+	}
+</style>
+</head>
+<body class="text-center">
+	<div
+		class="bg-azulpatron d-flex align-items-center h-100 mx-auto flex-column">
+		<header class="container cover-container">
+			<div class="row">
+				<div class="col-12 col-md-8 position-relative herocontent">
+					<img class="hero" src="../../img/hero.webp">
+				</div>
+				<div class="col-12  col-md-4 d-flex align-items-center">
+					<ul class="nav flex-column menu-baner">
+						<li class="homebtn"><img src="../../img/home.svg"> INICIO</li>
+						<li class="nav-item"><a class="nav-link boton-rojo m-1"
+							href="#">Contacto</a></li>
+						<li class="nav-item"><a class="nav-link boton-rojo m-1"
+							href="#">Ubícanos</a></li>
+						<li class="nav-item"><a class="nav-link insta" href="#"><img
+								src="../../img/instagram.svg"> @ElGranCombo</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</header>
+	</div>
+	<div class="bar-aliados col-12">
+		<a href="https://corporacionbel.com/" target="_blank"><img
+			class="d-inline img-flex px-1 px-md-4" src="../../img/bel-color.png"></a>
+		<a href="https://jacvenezuela.com/" target="_blank"><img
+			class="d-inline img-flex px-0 px-md-2" src="../../img/jac-color.png"></a>
+		<a href="https://belmotos.com/" target="_blank"><img
+			class="d-inline img-flex px-0 px-md-2"
+			src="../../img/Logo-Bel-Motos-SVG.png"></a>
+	</div>
+	<div class="container sorteos">
+		<div class="buscador row my-5">
+			<div class="col-6">
+				<button type="button" id="mostrarInput" class="boton-azul01">Buscar Número</button>
+				<div id="contenedorInput" style="display: none; position: absolute;">
+					<input type="text" id="campoTexto" placeholder="Número" />
+					<span id="cerrarInput">✖</span>
+				</div>	
+
+
+			</div>
+			<!-- <button id="mostrarInput">Mostrar campo</button> -->
+			
+			<script>	
+				const btnMostrar = document.getElementById('mostrarInput');
+				const contenedorInput = document.getElementById('contenedorInput');
+				const btnCerrar = document.getElementById('cerrarInput');
+				const campoTexto = document.getElementById('campoTexto');
+
+				btnMostrar.addEventListener('click', () => {
+				contenedorInput.style.display = 'block';
+				btnMostrar.style.display = 'none';
+				campoTexto.focus(); // enfoca al mostrar
+				});
+
+				btnCerrar.addEventListener('click', () => {
+				contenedorInput.style.display = 'none';
+				btnMostrar.style.display = 'inline-block';
+				campoTexto.value = ''; // limpia el campo
+				});
+			</script>
+
+			<div class="col-6">
+				<button type="button" class="boton-azul01">Elegir a la Suerte</button>
+
+			</div>
+			
+
+		</div>
+		<div class="col-12 titulo text-start azul">Seleccionar Rango</div>
+		<div class="centenas row">
+			<div class="esp10">000</div>
+			<div class="esp10">100</div>
+			<div class="esp10">200</div>
+			<div class="esp10">300</div>
+			<div class="esp10">400</div>
+			<div class="esp10">500</div>
+			<div class="esp10">600</div>
+			<div class="esp10">700</div>
+			<div class="esp10">800</div>
+			<div class="esp10">900</div>
+		</div>
+		<div class="nrodisponibles">
+			<div class="row my-2">
+				<div class="col-9 col-md-10 titulo align-items-center py-2">Seleccionar
+					Numero</div>
+
+				<div class="col-3 col-md-2 align-items-center crono">
+					<span>CIERRE DE VENTAS</span>
+					<div class="hora">00:35</div>
+				</div>
+				<div class="col-esp numero align-items-center mt-2 disablenro">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2 selectnro">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<div class="col-esp numero align-items-center mt-2">0000</div>
+				<hr>
+
+
+
+			</div>
+
+		</div>
+		<div class="separador"></div>
+	</div>
+
+	
+
+	<div class="container ventas my-5">
+		<div class="row compra">
+			<div class="titulo">Jugada</div>
+			<div class="col-12 col-md-8 mb-2">
+				<div class="table-responsive jugada">
+					<table
+						class="table table-striped table-bordered border border-white border border-2 tbljugadas">
+						<tbody>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+							<tr>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+								<td>0000 <a><img src="../../img/papelera.svg"></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-12 col-md-4">
+				<div class="datapago d-flex align-items-center">
+					<div class="d-block mx-auto">
+						<span class="titulo">Datos para pago movil</span><br>J-0198276354-2<br>0412
+						555 55 55<br>Banesco
+					</div>
+				</div>
+				<div class="crono">
+					<span>CIERRE DE VENTAS</span>
+					<div class="hora">00:35</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+	<div class="container formpagos mb-5">
+		<div class="titulo">Registro de pago</div>
+		<div class="row caja">
+
+			<div class="col-12 col-md-8 row">
+				
+				<div class="col-12 col-md-6 text-align-center mx-auto ">
+					<label>Nro. Cédula</label>
+					<div class="input-group">					
+						<div class=" ">
+							<select id="origen" class="form-select" style="width: 60px;" tabindex="100" required>
+								<option value="V" selected="true"> V </option>
+								<option value="E"> E </option>
+								<option value="J"> J </option>
+							</select>
+						</div>
+						<div class="input-contenedor">
+						<!-- <input type="text" tabindex="6"
+							class="form-control" maxlength="8" id="documentId" aria-describedby="number"  oninput="validateInput(this)"
+							placeholder="" onchange="getClient(document.getElementById('origen').value+this.value)"> -->
+						
+							<!-- Campo decorado con lupa y limpiar -->
+						
+								<!-- <span class="material-symbols-outlined icon search">search</span>
+								<input type="text" id="campoBusqueda"style="width: 240px;" placeholder="Buscar..." />
+								<span class="material-symbols-outlined icon clear" id="btnLimpiar">close</span>
+						 -->
+							<input type="text" class="form-control" maxlength="8" tabindex="101" oninput="validateInput(this)"  id="documentId" placeholder="Buscar..." onchange="getClient(document.getElementById('origen').value+this.value)">
+							 
+							
+							<!-- <i class="icon search " onclick="getClient(document.getElementById('origen').value+document.getElementById('documentId').value)"> 
+								<span class="material-symbols-outlined" tabindex="103">search</span>
+							</i> -->
+						</div>
+						
+					</div>
+				</div>
+				<!-- <div class="col-12 col-md-6">
+					
+					<label>Nombres</label><input type="text" class="form-control" id="cliFirstName" disabled="true"
+						aria-describedby="number"placeholder="">
+				</div> -->
+				<div class="col-12 col-md-6 text-align-center mx-auto ">
+					<label>Teléfono</label>
+					<div class="input-group">					
+						<div class=" ">
+								<select id="cliPhoneOper" tabindex="108" class="form-select" style="width: 89px;" oninput="document.getElementById('cliPhoneOperPay').value=this.value" >
+									<option value="0">  </option>
+									<option value="0412"> 0412 </option>
+									<option value="0414"> 0414 </option>
+									<option value="0416"> 0416 </option>
+									<option value="0424"> 0424 </option>
+									<option value="0426"> 0426 </option>
+								</select>
+						</div>
+
+						<input type="text" class="form-control" maxlength="7" tabindex="109"
+							id="cliPhone" aria-describedby="number"  oninput="document.getElementById('cliPhonePay').value=this.value" oninput="validateInput(this)">
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div
+					class="col-12  text-align-center mx-auto d-inline-block">
+					<label>Nombres</label><input type="text" tabindex="104" class="form-control" id="cliFirstName" disabled="true"
+						aria-describedby="number"placeholder="">
+				</div>
+				<div
+					class="col-12 text-align-center mx-auto d-inline-block">
+					<label>Apellidos</label><input type="text" class="form-control"
+						id="cliLastName" aria-describedby="number" disabled="true" tabindex="105">
+				</div>
+					<div class="col-12  text-align-center mx-auto d-inline-block">
+						<label>Estado</label>
+						<select class="form-select" disabled="true" tabindex="106" 
+							aria-label="Default select example" id="states">
+							<option value="0" selected="true" ></option>
+							
+						</select>
+					</div>
+					<div class="col-12 text-align-center mx-auto d-inline-block">
+						<label>Correo Electrónico</label>
+						<input type="email" id="cliEmail" tabindex="107"
+							class="form-control" 
+							aria-describedby="emailHelp"  onblur="validaEmail(this.value)">
+						<span id="emailError" class="error"></span>
+					</div>					
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="titulo-gris">Datos Bancarios</div>
+					<div class="col-12 text-align-center mx-auto d-inline-block">
+						<label>Banco donde realizó el pago</label>
+						<select id="banks" title="Selecone banco" tabindex="110"
+							class="form-select" aria-label="Default select example" >
+							<option value="0" selected="true"></option>
+							
+						</select>
+						<div class="col-12 text-align-center mx-auto d-inline-block">
+							<label>Nro. Referencia</label><input type="text" tabindex="111" 
+								class="form-control" id="bankReference" aria-describedby="number" oninput="validateInput(this)"
+								placeholder="">
+						</div>
+						
+						<div class="col-12 text-align-center mx-auto d-inline-block">
+							<label>Teléfono Pago móvil</label>
+							<div class="input-group">					
+								<div class=" ">
+										<select id="cliPhoneOperPay" class="form-select" style="width: 89px;"  tabindex="112">
+											<option value="0" selected="true">  </option>
+											<option value="0412"> 0412 </option>
+											<option value="0414"> 0414 </option>
+											<option value="0416"> 0416 </option>
+											<option value="0424"> 0424 </option>
+											<option value="0426"> 0426 </option>
+										</select>
+								</div>
+
+								<input type="text" class="form-control"
+									id="cliPhonePay" aria-describedby="number" maxlength="7" tabindex="113"  oninput="validateInput(this)">
+							</div>
+							<!-- <label>Teléfono Pago móvil</label><input type="text"
+								class="form-control" id="phonePay" aria-describedby="number"
+								placeholder="" onchange="formatearTelefono(event)"> -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-12 col-md-4">
+				<div class="terminos">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</div>
+				<div class="barraterminos">Aceptar Términos y Condiciones 
+					<input type="checkbox" class="form-check-input" id="exampleCheck1" tabindex="114" onchange="playEnabled(this)">
+				
+				</div>
+				<button class="boton-disabled w-100 mt-3" type="button" disabled="true" tabindex="115" id="play" onclick="sendPay()" >enviar</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+	<div class="separador"></div>
+		<div class="ubica row my-5 d-flex align-items-center">
+			<div class="col-12 titulo">Ubícanos</div>
+			<div class="col-12 col-md-6">
+				Le extendemos una cordial invitación a visitarnos para obtener información detallada sobre nuestros servicios. Nuestro equipo de profesionales está comprometido con ofrecerle la mejor experiencia y responder a todas sus inquietudes de manera clara y precisa.
+				Al visitarnos, podrá conocer más acerca de nuestras áreas de nuestros valores y la calidad que nos distingue. Estamos disponibles para brindarle le información necesaria.
+				Será un placer recibirle y atenderle con el compromiso y la excelencia que nos caracteriza. Esperamos su visita y quedamos a su disposición para cualquier consulta adicional.
+
+			</div>
+			<div class="col-12 col-md-6">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3928.415015351014!2d-69.33326492320786!3d10.065039990043687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1ses!2sau!4v1751387140015!5m2!1ses!2sau"
+					width="100%" height="450" style="border: 0;" allowfullscreen=""
+					loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+	</div>
+	<main>
+
+		<!-- Modal -->
+		<div class="modal fade" id="ventaModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Detalle de
+							Compra</h5>
+						<button type="button" class="close" data-bs-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-12 col-md-6 d-flex detallecompra">
+								<div class="col-4 text-start">Ticket</div>
+								<div class="col-8 text-start">Precio Unitario</div>
+							</div>
+							<div class="col-12 col-md-6 agradecimiento">
+								¡Gracias por su Compra!<br>En nombre de Online Bet Systems,
+								que remos agradecerte por confiar en nosotros. Tu apoyo
+								significa mucho y esperamos que disfrutes al máximo tu
+								experiencia.<br>¡Y hay más buenas noticias! con el mismo
+								ticket que adquiriste, ¡puedes ganar hasta 75 oportunidades para
+								llevarte increibles premios! Síguenos en redes sociales
+								@ElGranCombo o visita xxxxxx para descubrir cómo participar y
+								multiplicar tus posibilidades de ganar. <br>No olvides
+								revisar tu correo electrónico o tu cuenta para confirmar los
+								detalles de tu compra y las instrucciones para activar tus
+								oportunidades. Si tienes alguna duda, estamos aquí para ayudarte
+								en mmm@mail.com - 014x xxxxxxxxx.<br> ¡Gracias Nuevamente y
+								mucha suerte!<br>El equipo de El Gran Combo
+							</div>
+						</div>
+						<div class="col-12 pt-5">
+							<h1>¡Gracias por su Compra!</h1>
+						</div>
+					</div>
+
+
+					<div class="modal-footer">
+						<button type="button" class="boton-rojo">Aceptar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+
+
+
+
+
+
+		<!-- FOOTER -->
+
+		<footer>
+			<div class="pie">
+				<div class="container py-5">
+					<div class="row align-items-center">
+						<div class="col-12 col-md-7 ">El sitio web
+							grancombo.com es administrado por la empresa Lottery Bet
+							System, C.A. de RIF: J-506642514. Debidamente registrada ante el
+							Servicio Autónomo de Registros y Notarías en el Registro
+							Mercantil Primero del Lara de La República Bolivariana de
+							Venezuela, y está plenamente autorizada por la Comisión Nacional
+							de Loterías (CONALOT) para la explotación de actividades de
+							Apuestas de Loterías, Apuestas Deportivas, Figuras, Triples y
+							Terminales. Bajo la licencia número 00-LC-0000-0-0000, siendo su
+							registro Nacional de Loterías el Nro. 00-PI-000000-000. MaticLot
+							es el programa informático que utiliza el sitio web
+							GanaConTodo.com, está registrado ante el Servicio Autónomo de
+							Propiedad Intelectual (SAPI) bajo el Nro. 99999. Y debidamente
+							autorizado por la Comisión Nacional de Loterías (Conalot) bajo la
+							licencia Nro. 0-0000, también dispone de la licencia Nro.
+							00-LC-000-RPI-0000 emitida por la Lotería de Cojedes para la
+							comercialización de juegos de lotería.</div>
+						<div class="col-12 col-md-5">
+							<img class="d-inline img-flex px-0 px-md-2"
+								src="../img/bel-blanco.png"> <img
+								class="d-inline img-flex px-0 px-md-2" src="../img/jac-blanco.png">
+							<img class="d-inline img-flex px-0 px-md-2" style="width: 20%;"
+								src="../img/loteriadeltachira.png"> <img
+								class="d-inline img-flex px-0 px-md-2" src="../img/conalot.png">
+							<img class="d-inline img-flex px-0 px-md-2"
+								src="../img/logoonlinesystems.png"> <img
+								class="d-inline img-flex px-0 px-md-2" src="../img/super-gana.png">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contacto">
+				<div class="container py-5">
+					<form>
+						<div class="row align-items-center">
+							<div class="col-12 titulo azul">Contáctanos</div>
+							<div class="col-12 col-md-6">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Nombre</span>
+									<input type="text" class="form-control" placeholder=""
+										aria-label="Nombre" aria-describedby="basic-addon1">
+								</div>
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Apellido</span>
+									<input type="text" class="form-control" placeholder=""
+										aria-label="Apellido" aria-describedby="basic-addon1">
+								</div>
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Correo
+										Electrónico</span> <input type="text" class="form-control"
+										placeholder="" aria-label="mail"
+										aria-describedby="basic-addon1">
+								</div>
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Teléfono</span>
+									<input type="text" class="form-control" placeholder=""
+										aria-label="tlf" aria-describedby="basic-addon1">
+								</div>
+							</div>
+							<div class="col-12 col-md-6">
+								<div class="input-group">
+									<span class="input-group-text">Su Mensaje</span>
+									<textarea class="form-control" aria-label="With textarea"
+										style="height: 120px;"></textarea>
+								</div>
+								<button class="boton-rojo mt-3" type="button">enviar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<p>&copy; 2025 OnLine Bet Systems, c.a. &middot;</p>
+			</div>
+
+
+		</footer>
+	</main>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="../js/up-botton.js"></script> <!-- Boton de subir --> 
+	<script src="../js/bootstrap.bundle.min.js"></script><!-- bootstrap -->
+	<script src="../js/format.js"></script> <!-- funciones de formato -->
+	<script src="../js/generalData.js"></script> <!-- funcones generales -->
+	<script src="../js/clienteAdmin.js"></script> <!-- gestión del cliente  -->
+	<script>
+		$("#ventaModal").modal({
+			modal : true,
+			buttons : {
+				Ok : function() {
+					$(this).modal("close");
+				}
+			}
+		});
+
+		const inputElement = document.getElementById("nameEmail");		
+		inputElement.addEventListener("beforeinput", (event) => {
+			const nextValue = inputElement.value.substring(0, inputElement.selectionStart) + (event.data || "") + inputElement.value.substring(inputElement.selectionEnd);
+			
+			if (!/^[a-zA-Z\s]*$/.test(nextValue)) {
+			event.preventDefault();
+			//resultadoElement.textContent = "Solo se permiten letras y espacios.";
+			} 
+		});
+
+
+		const params = window.location.pathname.split('/');
+		const idPro = params[2]; 
+		console.log(idPro);
+		
+		
+
+	</script>
+
+</body>
+</html>
